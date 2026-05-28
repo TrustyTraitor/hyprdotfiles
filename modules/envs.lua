@@ -11,3 +11,5 @@ hl.env("GDK_BACKEND", "wayland,x11,*")
 
 hl.env("LIBVA_DRIVER_NAME", "nvidia")
 hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
+
+hl.env("MOZ_ENABLE_WAYLAND", "1")

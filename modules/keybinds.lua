@@ -22,13 +22,22 @@ hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("swaync-client -t"))
 hl.bind(mainMod .. " + SHIFT + N", hl.dsp.exec_cmd("swaync-client -d"))
 
 -- Locking, Shutting down, Restarting, Logging Out
-hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("pidof hyprlock || hyprlock --grace 15"))
 hl.bind(mainMod .. " + CTRL + L", hl.dsp.exec_cmd("hyprshutdown -t 'Shutting down...' --post-cmd 'shutdown -P 0'"))
 hl.bind(mainMod .. " + SHIFT + L", hl.dsp.exec_cmd("hyprshutdown -t 'Restarting...' --post-cmd 'shutdown -r 0'"))
 hl.bind(mainMod .. " + ALT + L", hl.dsp.exec_cmd("hyprshutdown -t 'Logging Out...'"))
 
 -- Restart Waybar
 hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd("~/.config/waybar/scripts/launch.sh"))
+hl.bind(mainMod .. " + CTRL + R", function()
+	local is_qs_running = io.popen("pgrep -l qs | wc -l"):read("n")
+
+	if is_qs_running > 0 then
+		hl.dispatch(hl.dsp.exec_cmd("pkill qs"))
+	else
+		hl.dispatch(hl.dsp.exec_cmd("qs"))
+	end
+end)
 
 hl.bind(mainMod .. " + SHIFT + V", hl.dsp.window.fullscreen({ action = "toggle" }))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
