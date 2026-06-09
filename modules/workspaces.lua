@@ -22,7 +22,10 @@ hl.window_rule({
 	no_focus = true,
 })
 
-hl.workspace_rule({ workspace = "r[1-5]", persistent = true, monitor = "DP-1" })
+for i = 1, 5, 1 do
+	hl.workspace_rule({ workspace = tostring(i), persistent = true, monitor = "DP-1" })
+end
+
 hl.workspace_rule({
 	workspace = "name:discord",
 	default_name = "discord",
