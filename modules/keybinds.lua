@@ -2,6 +2,10 @@ require("modules.scripts.discord")
 
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
+-- Mouse keybinds dont seem to work correctly when the keybind requires holding. Will need to investigate further another time
+-- This keybind did work when using a keyboard key, just not when using a mouse key
+--hl.bind(mainMod .. " + mouse:274", hl.dsp.pass({ window = "title:^.*(Discord).*$" }, { mouse = true }))
+
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(Terminal))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(Terminal .. " fish -c " .. FileManager))
@@ -21,7 +25,7 @@ local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("swaync-client -t"))
 hl.bind(mainMod .. " + SHIFT + N", hl.dsp.exec_cmd("swaync-client -d"))
 
--- Locking, Shutting down, Restarting, Logging Out
+-- Locking, Shutting down, Restarting, Logging Outinimum window si
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("pidof hyprlock || hyprlock --grace 15"))
 hl.bind(mainMod .. " + CTRL + L", hl.dsp.exec_cmd("hyprshutdown -t 'Shutting down...' --post-cmd 'shutdown -P 0'"))
 hl.bind(mainMod .. " + SHIFT + L", hl.dsp.exec_cmd("hyprshutdown -t 'Restarting...' --post-cmd 'shutdown -r 0'"))
@@ -68,8 +72,8 @@ hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- Scroll through existing workspaces with mainMod + scroll
-hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
-hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
+--hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
+--hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
