@@ -22,9 +22,18 @@ hl.window_rule({
 	no_focus = true,
 })
 
-for i = 1, 5, 1 do
+for i = 1, 3, 1 do
 	hl.workspace_rule({ workspace = tostring(i), persistent = true, monitor = "DP-1" })
 end
+
+hl.workspace_rule({
+	workspace = "name:games",
+	default_name = "games",
+	persistent = false,
+	on_created_empty = "steam",
+})
+hl.window_rule({ match = { title = "Steam" }, workspace = "name:games" })
+hl.window_rule({ match = { class = "gamescope" }, workspace = "name:games" })
 
 hl.workspace_rule({
 	workspace = "name:discord",
