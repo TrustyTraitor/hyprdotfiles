@@ -12,8 +12,8 @@ hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(Terminal .. " fish -c " .. FileManage
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(Menu .. " -show combi"))
 hl.bind(mainMod .. " + F", hl.dsp.exec_cmd(Browser))
 
-hl.bind(mainMod .. " + D", ToggleWorkspace("discord"))
-hl.bind(mainMod .. " + G", ToggleWorkspace("games"))
+hl.bind(mainMod .. " + D", ToggleWorkspace("name:discord"))
+hl.bind(mainMod .. " + G", ToggleWorkspace("name:games"))
 hl.bind(mainMod .. " + SHIFT + G", hl.dsp.window.move({ workspace = "name:games" }))
 
 -- Color Picker

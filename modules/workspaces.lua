@@ -28,7 +28,7 @@ end
 
 hl.workspace_rule({
 	workspace = "name:games",
-	default_name = "games",
+	--	default_name = "games",
 	persistent = false,
 	on_created_empty = "steam",
 })
@@ -37,7 +37,7 @@ hl.window_rule({ match = { class = "gamescope" }, workspace = "name:games" })
 
 hl.workspace_rule({
 	workspace = "name:discord",
-	default_name = "discord",
+	--default_name = "discord",
 	persistent = false,
 	monitor = "DP-1",
 	on_created_empty = "discord",
