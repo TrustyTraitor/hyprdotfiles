@@ -33,6 +33,7 @@ hl.workspace_rule({
 	on_created_empty = "steam",
 })
 hl.window_rule({ match = { title = "Steam" }, workspace = "name:games" })
+hl.window_rule({ match = { title = "^Heroic.*$" }, workspace = "name:games" })
 hl.window_rule({ match = { class = "gamescope" }, workspace = "name:games" })
 
 hl.workspace_rule({
