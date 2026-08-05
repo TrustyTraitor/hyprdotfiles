@@ -61,6 +61,10 @@ hl.bind(mainMod .. " + ALT + right", hl.dsp.window.move({ direction = "right" })
 hl.bind(mainMod .. " + ALT + up", hl.dsp.window.move({ direction = "up" }))
 hl.bind(mainMod .. " + ALT + down", hl.dsp.window.move({ direction = "down" }))
 
+-- Scrolling workspace binds
+hl.bind(mainMod .. " + mouse_down", hl.dsp.layout("focus r"))
+hl.bind(mainMod .. " + mouse_up", hl.dsp.layout("focus l"))
+
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
 for i = 1, 10 do
