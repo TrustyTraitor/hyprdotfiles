@@ -16,3 +16,35 @@ function ToggleWorkspace(workspace_id)
 		end
 	end
 end
+
+function ScrollingBind(command, scroll_dir)
+	return function()
+		if hl.get_active_workspace().tiled_layout == "scrolling" then
+			hl.dispatch(hl.dsp.layout(command))
+		else
+			if scroll_dir == "mouse_down" then
+				hl.dispatch(hl.dsp.focus({ workspace = "e+1" }))
+			else
+				hl.dispatch(hl.dsp.focus({ workspace = "e-1" }))
+			end
+		end
+	end
+end
+
+---@param apps { [string]: [string, table][] }
+function OpenOnEmpty(apps)
+	hl.on("workspace.created", function(workspace)
+		if not workspace.is_empty then
+			return
+		end
+		local programs = apps[workspace.name]
+		if programs == nil then
+			return
+		end
+
+		for _, v in pairs(programs) do
+			local app, rules = table.unpack(v)
+			hl.exec_cmd(app, rules)
+		end
+	end)
+end

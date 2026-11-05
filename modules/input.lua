@@ -26,5 +26,5 @@ hl.gesture({
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Devices/ for more
 hl.device({
 	name = "turtle-beach-burst-ii-air-dongle-mouse",
-	sensitivity = -0.5,
+	sensitivity = -0.6,
 })

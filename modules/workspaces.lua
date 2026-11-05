@@ -28,7 +28,6 @@ end
 
 hl.workspace_rule({
 	workspace = "name:games",
-	--	default_name = "games",
 	layout = "scrolling",
 	layout_opts = {
 		direction = "right",
@@ -38,11 +37,20 @@ hl.workspace_rule({
 		wrap_swapcol = true,
 	},
 	persistent = false,
-	on_created_empty = "gamescope -w 3840 -h 2160 -W 3840 -H 2160 -f --force-grab-cursor -r 144 -e -- steam -tenfoot",
 })
 hl.window_rule({ match = { title = "Steam" }, workspace = "name:games" })
 hl.window_rule({ match = { title = "^Heroic.*$" }, workspace = "name:games" })
 hl.window_rule({ match = { class = "gamescope" }, workspace = "name:games" })
+hl.window_rule({ match = { tag = "proton-game" }, workspace = "name:games" })
+
+hl.workspace_rule({
+	workspace = "special:wowapps",
+	layout = "dwindle",
+	persistent = false,
+})
+hl.window_rule({ match = { class = "curseforge" }, workspace = "special:wowapps" })
+hl.window_rule({ match = { class = "Archon App" }, workspace = "special:wowapps" })
+hl.window_rule({ match = { class = "io.raider.client" }, workspace = "special:wowapps" })
 
 hl.workspace_rule({
 	workspace = "name:discord",
@@ -56,12 +64,21 @@ hl.workspace_rule({
 	},
 	persistent = false,
 	monitor = "DP-1",
-	on_created_empty = "discord",
 })
-hl.workspace_rule({ workspace = "special:magic", persistent = true })
-
 hl.window_rule({ match = { title = "Discord" }, workspace = "name:discord" })
 hl.window_rule({ match = { title = "Signal" }, workspace = "name:discord" })
+
+hl.workspace_rule({ workspace = "special:magic", persistent = true, monitor = "DP-1" })
+
+OpenOnEmpty({
+	["games"] = { { "uwsm app -- steam" } },
+	["discord"] = { { "uwsm app -- discord", {} } },
+	["special:wowapps"] = {
+		{ "uwsm app -- RaiderIO.desktop" },
+		{ "uwsm app -- Curseforge.desktop" },
+		{ "uwsm app -- Archon.desktop" },
+	},
+})
 
 -- Make all screens full width on scrolling
 hl.window_rule({ match = { class = ".*" }, scrolling_width = 1.0 })
