@@ -1,26 +1,27 @@
 require("modules.scripts.uwsm")
+local constants = require("modules.systems.constants")
 
 ---@type Bind[]
 AppBinds = {
 	{
 		bind = "Q",
-		action = Launch(Terminal),
+		action = constants.applications.core.terminal,
 	},
 	{
 		bind = "E",
-		action = Launch(Terminal .. " fish -c " .. FileManager),
+		action = constants.applications.core.file_manager,
 	},
 	{
 		bind = "R",
-		action = Launch(Menu),
+		action = constants.applications.core.menu,
 	},
 	{
 		bind = "F",
-		action = Launch(Browser),
+		action = constants.applications.core.browser,
 	},
 	{
 		bind = "mouse:275",
-		action = hl.dsp.global("discord:discord-push-to-talk"),
+		action = constants.applications.social.discord.push_to_talk,
 		useLeader = false,
 	},
 }

@@ -1,27 +1,29 @@
+local constants = require("modules.systems.constants")
+
 ---@type Bind[]
 WindowBinds = {
-	{ "C", hl.dsp.window.close() },
+	{ "C", constants.system.window.close },
 
-	{ "SHIFT + V", hl.dsp.window.fullscreen({ action = "toggle" }) },
-	{ "V", hl.dsp.window.float({ action = "toggle" }) },
-	{ "J", hl.dsp.layout("togglesplit") }, -- dwindle only
+	{ "SHIFT + V", constants.system.window.fullscreen },
+	{ "V", constants.system.window.float },
+	{ "J", constants.system.window.togglesplit }, -- dwindle only
 
 	-- Move focus with MainMod + arrow keys
-	{ "left", hl.dsp.focus({ direction = "left" }) },
-	{ "right", hl.dsp.focus({ direction = "right" }) },
-	{ "up", hl.dsp.focus({ direction = "up" }) },
-	{ "down", hl.dsp.focus({ direction = "down" }) },
+	{ "left", constants.system.window.move.left },
+	{ "right", constants.system.window.move.right },
+	{ "up", constants.system.window.move.up },
+	{ "down", constants.system.window.move.up },
 
-	{ "ALT + left", hl.dsp.window.move({ direction = "left" }) },
-	{ "ALT + right", hl.dsp.window.move({ direction = "right" }) },
-	{ "ALT + up", hl.dsp.window.move({ direction = "up" }) },
-	{ "ALT + down", hl.dsp.window.move({ direction = "down" }) },
+	{ "ALT + left", constants.system.window.focus.left },
+	{ "ALT + right", constants.system.window.focus.right },
+	{ "ALT + up", constants.system.window.focus.up },
+	{ "ALT + down", constants.system.window.focus.down },
 
 	-- Scrolling workspace binds
-	{ "mouse_down", ScrollingBind("focus r", "mouse_down") },
-	{ "mouse_up", ScrollingBind("focus l", "mouse_up") },
+	{ "mouse_down", constants.system.window.focus.scrolling.right },
+	{ "mouse_up", constants.system.window.focus.scrolling.left },
 
 	-- Move/resize windows with MainMod + LMB/RMB and dragging
-	{ "mouse:272", hl.dsp.window.drag(), { mouse = true } },
-	{ "mouse:273", hl.dsp.window.resize(), { mouse = true } },
+	{ "mouse:272", constants.system.window.move.mouse, { mouse = true } },
+	{ "mouse:273", constants.system.window.resize.mouse, { mouse = true } },
 }
