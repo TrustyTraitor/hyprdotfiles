@@ -1,25 +1,29 @@
-hl.bind(MainMod .. " + C", hl.dsp.window.close())
+local constants = require("modules.systems.constants")
 
-hl.bind(MainMod .. " + SHIFT + V", hl.dsp.window.fullscreen({ action = "toggle" }))
-hl.bind(MainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
---hl.bind(MainMod .. " + P", hl.dsp.window.pseudo())
-hl.bind(MainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
+---@type Bind[]
+WindowBinds = {
+	{ "C", constants.system.window.close },
 
--- Move focus with MainMod + arrow keys
-hl.bind(MainMod .. " + left", hl.dsp.focus({ direction = "left" }))
-hl.bind(MainMod .. " + right", hl.dsp.focus({ direction = "right" }))
-hl.bind(MainMod .. " + up", hl.dsp.focus({ direction = "up" }))
-hl.bind(MainMod .. " + down", hl.dsp.focus({ direction = "down" }))
+	{ "SHIFT + V", constants.system.window.fullscreen },
+	{ "V", constants.system.window.float },
+	{ "J", constants.system.window.togglesplit }, -- dwindle only
 
-hl.bind(MainMod .. " + ALT + left", hl.dsp.window.move({ direction = "left" }))
-hl.bind(MainMod .. " + ALT + right", hl.dsp.window.move({ direction = "right" }))
-hl.bind(MainMod .. " + ALT + up", hl.dsp.window.move({ direction = "up" }))
-hl.bind(MainMod .. " + ALT + down", hl.dsp.window.move({ direction = "down" }))
+	-- Move focus with MainMod + arrow keys
+	{ "left", constants.system.window.move.left },
+	{ "right", constants.system.window.move.right },
+	{ "up", constants.system.window.move.up },
+	{ "down", constants.system.window.move.up },
 
--- Scrolling workspace binds
-hl.bind(MainMod .. " + mouse_down", ScrollingBind("focus r", "mouse_down"))
-hl.bind(MainMod .. " + mouse_up", ScrollingBind("focus l", "mouse_up"))
+	{ "ALT + left", constants.system.window.focus.left },
+	{ "ALT + right", constants.system.window.focus.right },
+	{ "ALT + up", constants.system.window.focus.up },
+	{ "ALT + down", constants.system.window.focus.down },
 
--- Move/resize windows with MainMod + LMB/RMB and dragging
-hl.bind(MainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
-hl.bind(MainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+	-- Scrolling workspace binds
+	{ "mouse_down", constants.system.window.focus.scrolling.right },
+	{ "mouse_up", constants.system.window.focus.scrolling.left },
+
+	-- Move/resize windows with MainMod + LMB/RMB and dragging
+	{ "mouse:272", constants.system.window.move.mouse, { mouse = true } },
+	{ "mouse:273", constants.system.window.resize.mouse, { mouse = true } },
+}
